@@ -32,7 +32,7 @@ string bitconverter64(int a, int b) {
 }
 
 string bitconverter64_3(string str1, int a, int b, int c) {
-    string abc = (
+    char abc = (
         (str1.at(a) << 16) | 
         (str1.at(b) << 8) |
         (str1.at(c))
@@ -42,7 +42,7 @@ string bitconverter64_3(string str1, int a, int b, int c) {
 }
 
 string bitconverter64_1(string str1, int a) {
-    string abc = str1.at(a);
+    char abc = str1.at(a);
     return bitconverter64(abc, 2);
 }
 
