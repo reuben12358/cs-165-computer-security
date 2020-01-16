@@ -196,6 +196,8 @@ int main() { // welcome to bullshit
     
     temp = md5(temp);
 
+    cout << "temp: " << temp << endl;
+
     for (int i = 0; i < 1000; ++i) {
         intermediate = "";
         if (i & 1) {
@@ -219,6 +221,8 @@ int main() { // welcome to bullshit
         temp = md5(intermediate);
         // intermediate = generate_hash(salt, password, intermediate);
     }
+
+    cout << "temp: " << temp << endl;
 
     string checker = bitconverter64_3(temp, 0, 6, 12) +
                      bitconverter64_3(temp, 1, 7, 13) +
