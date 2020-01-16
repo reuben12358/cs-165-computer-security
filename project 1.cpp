@@ -174,7 +174,7 @@ int main() { // welcome to bullshit
 
     cout << "passed first for loop" << endl;
 
-    for (int i = password.size() & 0xff; i != 0; i >> 1) {
+    for (int i = password.size(); i != 0; i >>= 1) {
         if (i & 1)
             temp += "\0";
         else 
