@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <string>
+#include <valarray> // for slice
 // #include <openssl/md5.h> doesnt work, chen said to use other
 #include "md5.h"
 #include "md5.cpp"
@@ -167,7 +168,7 @@ int main() { // welcome to bullshit
         temp += intermediate.slice(0, (i > 16) ? 16 : i);
     }
 
-    for (int i = password.size(); i != 0; i >> = 1) {
+    for (int i = password.size(); i != 0; i >> 1) {
         if (i & 1)
             temp += "\0";
         else 
