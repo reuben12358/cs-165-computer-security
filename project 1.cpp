@@ -21,12 +21,12 @@ string generate_hash(string salt, string password, string& intermediate) {
     return intermediate;
 }
 */
-string bitconverter64(string &a, int &b) {
+string bitconverter64(int a, int b) {
     string ascii64 = "./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     string str1 = "";
     while (--b >= 0) {
         str1 += ascii64.at(a & 0x3f);
-        a >>= 6;
+        a >> 6;
     }
     return str1;
 }
@@ -158,20 +158,20 @@ int main() { // welcome to bullshit
     */
 
     string intermediate = ""; // to calculate
-    string template = password + "$1$" + salt;
+    string temp = password + "$1$" + salt;
 
     // compute alternate sum
     intermediate = md5(password + salt + password);
     
     for (int i = password.size(); i > 0; i -= 16) {
-        template += intermediate.slice(0, (i > 16) ? 16 : i);
+        temp += intermediate.slice(0, (i > 16) ? 16 : i);
     }
 
     for (int i = password.size(); i != 0; i >> = 1) {
         if (i & 1)
-            template += "\0";
+            temp += "\0";
         else 
-            template += password.at(0);
+            temp += password.at(0);
     }
 
     // compute intermediate sum. probably fucked up here somewhere already
@@ -185,7 +185,7 @@ int main() { // welcome to bullshit
 
     // for (int i = 0; i < ) // idk what i was doing here no cap
     
-    template = md5(template);
+    temp = md5(temp);
 
     for (int i = 0; i < 1000; ++i) {
         intermediate = "";
@@ -193,7 +193,7 @@ int main() { // welcome to bullshit
             intermediate += password;
         }
         else {
-            intermediate += template;
+            intermediate += temp;
         }
         if (i % 3) {
             intermediate += salt;
@@ -202,21 +202,21 @@ int main() { // welcome to bullshit
             intermediate += password;
         }
         if (i & 1) {
-            intermediate += template;
+            intermediate += temp;
         }
         else {
             intermediate += password;
         }
-        template = md5(intermediate);
+        temp = md5(intermediate);
         // intermediate = generate_hash(salt, password, intermediate);
     }
 
-    string checker = bitconverter64_3(template, 0, 6, 12) +
-                     bitconverter64_3(template, 1, 7, 13) +
-                     bitconverter64_3(template, 2, 8, 14) +
-                     bitconverter64_3(template, 3, 9, 15) +
-                     bitconverter64_3(template, 4, 10, 5) +
-                     bitconverter64_1(template, 11);
+    string checker = bitconverter64_3(temp, 0, 6, 12) +
+                     bitconverter64_3(temp, 1, 7, 13) +
+                     bitconverter64_3(temp, 2, 8, 14) +
+                     bitconverter64_3(temp, 3, 9, 15) +
+                     bitconverter64_3(temp, 4, 10, 5) +
+                     bitconverter64_1(temp, 11);
 
     // do the bitwise choosing thing;
     /*
@@ -226,7 +226,7 @@ int main() { // welcome to bullshit
     */
 
     // compute this nightmare 26x26x26x26x26x26 times reeeeeeeeeeeeeeeeeeeeeee
-    if (!(checker ^ target_hash)) { // just use intermediate XOR target_hash u dumbass
+    if (checker == target_hash) { // just use intermediate XOR target_hash u dumbass
         cout << "success! the password is: " << password; 
         return 0;
     }
