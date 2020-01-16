@@ -162,11 +162,11 @@ int main() { // welcome to bullshit
     string temp = password + "$1$" + salt;
 
     // compute alternate sum
-    cout << "temp :" << temp << endl;
+    cout << "temp: " << temp << endl;
 
     intermediate = md5(password + salt + password);
     
-    cout << "does primitive hash work? " << intermediate << endl;
+    cout << "does primitive hash work?\nintm: " << intermediate << endl;
 
     for (int i = password.size(); i > 0; i -= 16) {
         temp += intermediate.substr(0, (i > 16) ? 16 : i);
@@ -222,7 +222,7 @@ int main() { // welcome to bullshit
         // intermediate = generate_hash(salt, password, intermediate);
     }
 
-    cout << "temp: " << temp << endl;
+    cout << "passed 1000 for loop thingy\ntemp: " << temp << endl;
 
     string checker = bitconverter64_3(temp, 0, 6, 12) +
                      bitconverter64_3(temp, 1, 7, 13) +
