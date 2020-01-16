@@ -165,7 +165,7 @@ int main() { // welcome to bullshit
     intermediate = md5(password + salt + password);
     
     for (int i = password.size(); i > 0; i -= 16) {
-        temp += intermediate.slice(0, (i > 16) ? 16 : i);
+        temp += intermediate.substr(0, (i > 16) ? 16 : i);
     }
 
     for (int i = password.size(); i != 0; i >> 1) {
