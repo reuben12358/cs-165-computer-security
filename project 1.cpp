@@ -162,11 +162,17 @@ int main() { // welcome to bullshit
     string temp = password + "$1$" + salt;
 
     // compute alternate sum
+    cout << "temp :" << temp << endl;
+
     intermediate = md5(password + salt + password);
     
+    cout << "does primitive hash work? " << intermediate << endl;
+
     for (int i = password.size(); i > 0; i -= 16) {
         temp += intermediate.substr(0, (i > 16) ? 16 : i);
     }
+
+    cout << "passed first for loop" << endl;
 
     for (int i = password.size(); i != 0; i >> 1) {
         if (i & 1)
@@ -174,6 +180,8 @@ int main() { // welcome to bullshit
         else 
             temp += password.at(0);
     }
+
+    cout << "passed second for loop" << endl;
 
     // compute intermediate sum. probably fucked up here somewhere already
     // intermediate += password + "$1$" + salt + intermediate.size();
