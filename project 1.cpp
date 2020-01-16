@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <string>
-#include <valarray> // for slice
+// #include <valarray> // for slice
 // #include <openssl/md5.h> doesnt work, chen said to use other
 #include "md5.h"
 #include "md5.cpp"
@@ -144,7 +144,7 @@ string next_word (string word) {
 int main() { // welcome to bullshit
 
     string salt = "hfT7jp2q"; // pull from table but same for everyone
-    string password = "aaaaaaaa"; // base password 
+    string password = "reeeeeee"; // base password 
     string target_hash = "yKkGOHLs7BZiNuh03um670"; // given to us
     // to do: actually implement random 8 letter password generator 
     
@@ -231,13 +231,16 @@ int main() { // welcome to bullshit
         cout << "success! the password is: " << password; 
         return 0;
     }
+    else {
+        cout << password << " " << checker;
+    }
 
     // for (int i = 0; i < 128; ++i) {
     //     cout << addr[i];
     // }
     // cout << endl;
 
-    cout << target_hash.size() << endl;
+    // cout << target_hash.size() << endl;
 
     return 0;
 }
