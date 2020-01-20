@@ -315,9 +315,9 @@ string convert_to_16 (string hex, int size) {
 
 int main() { // welcome to bullshit
 
-    string salt = "hfT7jp2q"; // pull from table but same for everyone
+    string salt = "4fTgjp6q"; // pull from table but same for everyone
     string password = "zaaaaa"; // base password // change back to a 
-    string target_hash = "L1zWXhnkkBA9p8o.wdn511"; // given to us
+    string target_hash = "jHqMo8moILsd9RQlicvJc."; // given to us
 
     string intermediate = ""; // to calculate
 
